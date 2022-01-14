@@ -1,1 +1,12 @@
-0
+1
+1001
+pass
+name
+surname
+05555555555
+eragonpyrus@gmail.com
+1000
+500
+500
+500
+500

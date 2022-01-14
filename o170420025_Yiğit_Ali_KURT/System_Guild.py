@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
@@ -348,22 +349,19 @@ def nihahahaha():
         global user_num
         global test_id
         global control_us
-        try:
-            if nihahahaha.tb_name_c.get() != "" and nihahahaha.tb_surname_c.get() != "" and nihahahaha.tb_tel_c.get() != "" and nihahahaha.tb_mail_c.get() != "" and nihahahaha.tb_pass_a_c.get() != "" and nihahahaha.tb_pass_b_c.get() != "":
-                if nihahahaha.tb_tel_c.get().isnumeric()==True:
-                    test_id=int(user_num)
-                    user_num=int(user_num)+1
-                    control_us=1
-                    user_set()
-                    messagebox.showinfo("Confirmation","Your account created\nAnd your user id sent your e-mail")
-                    i_am_bored.destroy()
-                    entry_p()
-                else:
-                    messagebox.showinfo("Warning","Tel number must consist of numbers only")
+        if nihahahaha.tb_name_c.get() != "" and nihahahaha.tb_surname_c.get() != "" and nihahahaha.tb_tel_c.get() != "" and nihahahaha.tb_mail_c.get() != "" and nihahahaha.tb_pass_a_c.get() != "" and nihahahaha.tb_pass_b_c.get() != "":
+            if nihahahaha.tb_tel_c.get().isnumeric()==True:
+                test_id=int(user_num)
+                user_num=int(user_num)+1
+                control_us=1
+                user_set()
+                messagebox.showinfo("Confirmation","Your account created\nAnd your user id sent your e-mail")
+                i_am_bored.destroy()
+                entry_p()
             else:
-                messagebox.showinfo("Warning","Don't leave any space")
-        except:
-            messagebox.showinfo("Warning","Your inputs are not suitable check it")
+                messagebox.showinfo("Warning","Tel number must consist of numbers only")
+        else:
+            messagebox.showinfo("Warning","Don't leave any space")
     i_am_bored = Tk()
     i_am_bored.geometry('720x400')
     i_am_bored.configure(background='#ffe8be')
@@ -619,7 +617,7 @@ def user_1_4_p():
                 using_number=int(sel_que.get())-10000
                 u_n_2=int(mission_boss[using_number])-1001
                 exp_txt=mission_explanation[using_number]
-                for i in range(21,len(exp_txt),+21):
+                for i in range(35,len(exp_txt),+70):
                     exp_txt = exp_txt[:i]+"\n "+exp_txt[i:]
                 hardness=int(mission_reward[using_number])
                 hardness-=200
@@ -813,7 +811,7 @@ def user_1_5_p():
             if u_n_2_d<-2:
                 u_n_2_d+=1001
             exp_txt_c=mission_explanation[using_number_c]
-            for i in range(24,len(exp_txt_c),+24):
+            for i in range(27,len(exp_txt_c),+60):
                 exp_txt_c = exp_txt_c[:i]+"\n "+exp_txt_c[i:]
             hardnesss=int(mission_reward[using_number_c])
             hardnesss-=200
@@ -1040,7 +1038,7 @@ def admin_2_p():
         a_mis_info=a_mis_info+mission_title[mis_id_b]
         a_mis_info=a_mis_info+"\n Quest Explanation:\t"
         a_m_exp=mission_explanation[mis_id_b]
-        for i in range(20,len(a_m_exp),+40):
+        for i in range(28,len(a_m_exp),+60):
             a_m_exp = a_m_exp[:i]+"\n "+a_m_exp[i:]
         a_mis_info=a_mis_info+a_m_exp
         a_mis_info=a_mis_info+"\n Quest Reward:\t\t"
@@ -1095,82 +1093,79 @@ def admin_3_p():
     a_p_3.configure(background='#ffe8be')
     a_p_3.title('System Guild')
     
-    try:
-        global c_i
-        c_i=4
-        def a_back_3():
-            a_p_3.destroy()
-            admin_p()
-        def a_me_m_i():
-            if a_mes_tb.get().isnumeric()==False:
-                messagebox.showinfo("Warning","Your input must be numbers only")
+    global c_i
+    c_i=4
+    def a_back_3():
+        a_p_3.destroy()
+        admin_p()
+    def a_me_m_i():
+        if a_mes_tb.get().isnumeric()==False:
+            messagebox.showinfo("Warning","Your input must be numbers only")
+        else:
+            if int(a_mes_tb.get())<0 or int(a_mes_tb.get())>len(message_id):
+                messagebox.showinfo("Warning","Your input is not suitable try again")
             else:
-                if int(a_mes_tb.get())<0 or int(a_mes_tb.get())>len(message_id):
-                    messagebox.showinfo("Warning","Your input is not suitable try again")
-                else:
-                    a_mes_info=""
-                    a_mes_info=a_mes_info+" Message Time-Date:\t"
-                    a_mes_info=a_mes_info+message_time[int(a_mes_tb.get())]
-                    a_mes_info=a_mes_info+" Message From:\t\t"
-                    a_mes_info=a_mes_info+message_id[int(a_mes_tb.get())]
-                    a_mes_info=a_mes_info+" Quest Explanation:\t"
-                    a_m_exp=message_text[int(a_mes_tb.get())]
-                    for i in range(48,len(a_m_exp),+73):
-                        a_m_exp = a_m_exp[:i]+"\n "+a_m_exp[i:]
-                    a_mes_info=a_mes_info+a_m_exp
-                    a_mes_info_lb=Label(a_p_3,text=a_mes_info,justify=LEFT,anchor='w')
-                    a_mes_info_lb.place(x=260, y=140,relwidth=0.58,relheight=0.475)
-        def next_page_me():
-            global c_i
-            a_mes_list=""
-            for i in range(c_i,c_i+4,1):
-                if i>=len(message_time):
-                    c_i=-4
-                    break
-                else:
-                    a_mes_list=a_mes_list+" Message id:\t"
-                    a_mes_list=a_mes_list+str(i)
-                    a_mes_list=a_mes_list+"\n Message Date:\t"
-                    a_mes_list=a_mes_list+message_time[i][18:29]
-                    a_mes_list=a_mes_list+"\n Message Time:\t"
-                    a_mes_list=a_mes_list+message_time[i][:8]
-                    a_mes_list=a_mes_list+"\n Message From:\t"
-                    a_mes_list=a_mes_list+message_id[i]
-                    a_mes_list=a_mes_list+"\n\n"
-            if a_mes_list!="":
-                a_mes_list_pano=Label(a_p_3,text=a_mes_list,justify=LEFT,anchor='w',font=('arial', 7, 'normal'))
-                a_mes_list_pano.place(x=40, y=50,relwidth=0.28,relheight=0.7)
-            c_i=c_i+4
+                a_mes_info=""
+                a_mes_info=a_mes_info+" Message Time-Date:\t"
+                a_mes_info=a_mes_info+message_time[int(a_mes_tb.get())]
+                a_mes_info=a_mes_info+" Message From:\t\t"
+                a_mes_info=a_mes_info+message_id[int(a_mes_tb.get())]
+                a_mes_info=a_mes_info+" Quest Explanation:\t"
+                a_m_exp=message_text[int(a_mes_tb.get())]
+                for i in range(48,len(a_m_exp),+73):
+                    a_m_exp = a_m_exp[:i]+"\n "+a_m_exp[i:]
+                a_mes_info=a_mes_info+a_m_exp
+                a_mes_info_lb=Label(a_p_3,text=a_mes_info,justify=LEFT,anchor='w')
+                a_mes_info_lb.place(x=260, y=140,relwidth=0.58,relheight=0.475)
+    def next_page_me():
+        global c_i
         a_mes_list=""
-        for i in range(0,4,1):
-            if i>=len(message_id):
+        for i in range(c_i,c_i+4,1):
+            if i>=len(message_time):
+                c_i=-4
                 break
-            a_mes_list=a_mes_list+" Message id:\t"
-            a_mes_list=a_mes_list+str(i)
-            a_mes_list=a_mes_list+"\n Message Date:\t"
-            a_mes_list=a_mes_list+message_time[i][18:29]
-            a_mes_list=a_mes_list+"\n Message Time:\t"
-            a_mes_list=a_mes_list+message_time[i][:8]
-            a_mes_list=a_mes_list+"\n Message From:\t"
-            a_mes_list=a_mes_list+message_id[i]
-            a_mes_list=a_mes_list+"\n\n"
-        a_mes_list_pano=Label(a_p_3,text=a_mes_list,justify=LEFT,anchor='w',font=('arial', 7, 'normal'))
-        a_mes_list_pano.place(x=40, y=50,relwidth=0.28,relheight=0.7)
-        
-        Button(a_p_3, text='Next Page', bg='#F0F8FF', font=('arial', 12, 'normal'), command=next_page_me).place(x=155, y=340)    
-        Button(a_p_3, text='About', bg='#F0F8FF', font=('arial', 12, 'normal'), command=a_me_m_i).place(x=450, y=100)    
-        Button(a_p_3, text='Back', bg='#F0F8FF', font=('arial', 12, 'normal'), command=a_back_3).place(x=40, y=340)    
-        
-        Label(a_p_3, text='Message id:', bg='#ffe8be', font=('arial', 12, 'normal')).place(x=350, y=60)
-        
-        a_mes_info=""
-        a_mes_info_lb=Label(a_p_3,text=a_mes_info,justify=LEFT,anchor='w')
-        a_mes_info_lb.place(x=260, y=140,relwidth=0.58,relheight=0.475)
-        
-        a_mes_tb=Entry(a_p_3)
-        a_mes_tb.place(x=450, y=63,relwidth=0.2)
-        
-        a_p_3.mainloop()
-    except:
-        messagebox.showinfo("Warning","Your input is not suitable try again")
+            else:
+                a_mes_list=a_mes_list+" Message id:\t"
+                a_mes_list=a_mes_list+str(i)
+                a_mes_list=a_mes_list+"\n Message Date:\t"
+                a_mes_list=a_mes_list+message_time[i][18:29]
+                a_mes_list=a_mes_list+"\n Message Time:\t"
+                a_mes_list=a_mes_list+message_time[i][:8]
+                a_mes_list=a_mes_list+"\n Message From:\t"
+                a_mes_list=a_mes_list+message_id[i]
+                a_mes_list=a_mes_list+"\n\n"
+        if a_mes_list!="":
+            a_mes_list_pano=Label(a_p_3,text=a_mes_list,justify=LEFT,anchor='w',font=('arial', 7, 'normal'))
+            a_mes_list_pano.place(x=40, y=50,relwidth=0.28,relheight=0.7)
+        c_i=c_i+4
+    a_mes_list=""
+    for i in range(0,4,1):
+        if i>=len(message_id):
+            break
+        a_mes_list=a_mes_list+" Message id:\t"
+        a_mes_list=a_mes_list+str(i)
+        a_mes_list=a_mes_list+"\n Message Date:\t"
+        a_mes_list=a_mes_list+message_time[i][18:29]
+        a_mes_list=a_mes_list+"\n Message Time:\t"
+        a_mes_list=a_mes_list+message_time[i][:8]
+        a_mes_list=a_mes_list+"\n Message From:\t"
+        a_mes_list=a_mes_list+message_id[i]
+        a_mes_list=a_mes_list+"\n\n"
+    a_mes_list_pano=Label(a_p_3,text=a_mes_list,justify=LEFT,anchor='w',font=('arial', 7, 'normal'))
+    a_mes_list_pano.place(x=40, y=50,relwidth=0.28,relheight=0.7)
+    
+    Button(a_p_3, text='Next Page', bg='#F0F8FF', font=('arial', 12, 'normal'), command=next_page_me).place(x=155, y=340)    
+    Button(a_p_3, text='About', bg='#F0F8FF', font=('arial', 12, 'normal'), command=a_me_m_i).place(x=450, y=100)    
+    Button(a_p_3, text='Back', bg='#F0F8FF', font=('arial', 12, 'normal'), command=a_back_3).place(x=40, y=340)    
+    
+    Label(a_p_3, text='Message id:', bg='#ffe8be', font=('arial', 12, 'normal')).place(x=350, y=60)
+    
+    a_mes_info=""
+    a_mes_info_lb=Label(a_p_3,text=a_mes_info,justify=LEFT,anchor='w')
+    a_mes_info_lb.place(x=260, y=140,relwidth=0.58,relheight=0.475)
+    
+    a_mes_tb=Entry(a_p_3)
+    a_mes_tb.place(x=450, y=63,relwidth=0.2)
+    
+    a_p_3.mainloop()
 entry_p()
